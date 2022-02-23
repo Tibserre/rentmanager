@@ -4,7 +4,9 @@ import java.util.Scanner;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.VehicleService;
 
 
 
@@ -15,9 +17,12 @@ public class Main {
 		System.out.println("ID ");
 		int id = sc.nextInt(); */
 		try {
-			System.out.println(ClientService.getInstance().findAll());
-			//int id = 4;
-			//System.out.println(ClientService.getInstance().findById(id));
+			System.out.println(VehicleService.getInstance().findAll());
+			//long id = 2;
+			/*String constructeur = "Peugot";
+			int nb_places = 4;
+			Vehicle vehicle = new Vehicle (constructeur, nb_places );
+			System.out.println(VehicleService.getInstance().create(vehicle)); */
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

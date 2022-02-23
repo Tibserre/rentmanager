@@ -27,19 +27,41 @@ public class VehicleService {
 	}
 	
 	
-	public long create(Vehicle vehicle) throws ServiceException {
-		// TODO: créer un véhicule
-		return 0;
+	public boolean create(Vehicle vehicle) throws ServiceException {
+	
+		try {
+			return this.vehicleDao.create(vehicle);
+			
+		} catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public Vehicle findById(long id) throws ServiceException {
-		// TODO: récupérer un véhicule par son id
+		try {
+			return this.vehicleDao.findById(id).get();
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	public List<Vehicle> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
+		try {
+			return this.vehicleDao.findAll()	;
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
+	}
+	
+public long delete(Vehicle vehicle) throws DaoException {
+		
+		return this.vehicleDao.delete(vehicle);
 	}
 	
 }
