@@ -2,17 +2,25 @@ package com.epf.rentmanager.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.dao.ClientDao;
 
+@Service
 public class ClientService {
 
 	private ClientDao clientDao;
 	public static ClientService instance;
+
+	private ClientService(ClientDao clientDao) {
+		this.clientDao= clientDao;
+	}
 	
-	private ClientService() {
+/*	public ClientService() {
 		this.clientDao = ClientDao.getInstance();
 	}
 	
@@ -20,9 +28,8 @@ public class ClientService {
 		if (instance == null) {
 			instance = new ClientService();
 		}
-		
 		return instance;
-	}
+	} */
 	
 	
 	public boolean create(Client client) throws ServiceException {
@@ -61,6 +68,11 @@ public class ClientService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "ClientService [clientDao=" + clientDao + "]";
 	}
 	
 }

@@ -1,6 +1,12 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.epf.rentmanager.configuration.AppConfiguration;
+import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
@@ -16,17 +22,20 @@ public class Main {
 		/*Scanner sc = new Scanner(System.in);
 		System.out.println("ID ");
 		int id = sc.nextInt(); */
-		try {
-			System.out.println(VehicleService.getInstance().findAll());
+	
+			ApplicationContext context = new
+					AnnotationConfigApplicationContext(AppConfiguration.class);
+					ClientService clientService = context.getBean(ClientService.class);
+					VehicleService vehicleService = context.getBean(VehicleService.class);
+					
+			System.out.println(clientService);
+			System.out.println(vehicleService);
 			//long id = 2;
 			/*String constructeur = "Peugot";
 			int nb_places = 4;
 			Vehicle vehicle = new Vehicle (constructeur, nb_places );
 			System.out.println(VehicleService.getInstance().create(vehicle)); */
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
     	/*Scanner sc = new Scanner(System.in);
 
@@ -50,9 +59,9 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-    }
+    
    
-	
+	}
 	
  
 }
