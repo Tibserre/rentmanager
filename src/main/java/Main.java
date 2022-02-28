@@ -18,6 +18,7 @@ import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 
 
@@ -56,15 +57,17 @@ public class Main {
 	}*/
 			ApplicationContext context = new
 					AnnotationConfigApplicationContext(AppConfiguration.class);
-					//ClientService clientService = context.getBean(ClientService.class);
+					ClientService clientService = context.getBean(ClientService.class);
 					VehicleService vehicleService = context.getBean(VehicleService.class);
-					
-			try {
-				System.out.println(vehicleService.findAll());
-			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+					ReservationService reservationService = context.getBean(ReservationService.class);
+		
+				try {
+					System.out.println(reservationService.findAll());
+				} catch (ServiceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 			
 			
 			//System.out.println(vehicleService);

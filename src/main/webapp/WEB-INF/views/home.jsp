@@ -45,7 +45,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Voitures</span>
-              <span class="info-box-number">2</span>
+              <span class="info-box-number"> ${Nb_vehicles} </span>
             </div>
             <!-- /.info-box-content -->
           </div>

@@ -71,6 +71,9 @@ public long delete(Vehicle vehicle) throws DaoException {
 	}
 
 
+public int countAll() {
+	return this.vehicleDao.countAll();
+}
 @Override
 public String toString() {
 	return "VehicleService [vehicleDao=" + vehicleDao + "]";

@@ -20,17 +20,7 @@ public class ClientService {
 		this.clientDao= clientDao;
 	}
 	
-/*	public ClientService() {
-		this.clientDao = ClientDao.getInstance();
-	}
-	
-	public static ClientService getInstance() {
-		if (instance == null) {
-			instance = new ClientService();
-		}
-		return instance;
-	} */
-	
+
 	
 	public boolean create(Client client) throws ServiceException {
 		try {

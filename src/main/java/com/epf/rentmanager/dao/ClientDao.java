@@ -25,14 +25,6 @@ public class ClientDao {
 	private ClientDao() {
 	}
 	
-	//private static ClientDao instance = null;
-	
-/*	public static ClientDao getInstance() {
-		if (instance == null) {
-			instance = new ClientDao();
-		}
-		return instance;
-	} */
 	
 	private static final String CREATE_CLIENT_QUERY = "INSERT INTO Client(nom, prenom, email, naissance) VALUES(?, ?, ?, ?);";
 	private static final String DELETE_CLIENT_QUERY = "DELETE FROM Client WHERE id=?;";
@@ -119,11 +111,12 @@ public class ClientDao {
 			while (rs.next()) {
 				Client client = new Client(rs.getString("prenom"), rs.getString("nom"), rs.getDate("naissance").toLocalDate(), rs.getString("email"), rs.getInt("id"));
 				clients.add(client);
-				conn.close();
-				 if (conn.isClosed()) 
-				        System.out.println("Connection closed.");
+				
 			}
-			
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
+			 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

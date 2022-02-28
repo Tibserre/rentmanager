@@ -28,14 +28,13 @@ public class ClientListServlet extends HttpServlet {
 	super.init();
 	SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
+	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
     	try {
-    		ApplicationContext context = new
-					AnnotationConfigApplicationContext(AppConfiguration.class);
-    		ClientService clientService = context.getBean(ClientService.class);
+    		
 			request.setAttribute("listUsers", clientService.findAll());
 			request.getRequestDispatcher("./WEB-INF/views/users/list.jsp").forward(request, response);
 		} catch (ServiceException e) {
