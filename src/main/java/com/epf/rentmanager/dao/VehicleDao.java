@@ -23,6 +23,7 @@ public class VehicleDao {
 	
 	private VehicleDao() {
 	}
+	
 	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
@@ -36,6 +37,9 @@ public class VehicleDao {
 			pstmt.setInt(2, vehicle.getNb_places());
 			pstmt.executeUpdate();
 			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,8 +54,11 @@ public class VehicleDao {
 			PreparedStatement pstmt = conn.prepareStatement(DELETE_VEHICLE_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setLong(1, vehicle.getId());
 			long key = pstmt.executeUpdate();
-			
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 			return key;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +79,8 @@ public class VehicleDao {
 			int vehicleNb_places = rs.getInt("nb_places");
 			Vehicle vehicle = new Vehicle (id, vehicleConstructeur, vehicleNb_places );
 			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 			return Optional.of(vehicle);
 			
 		} catch (SQLException e) {
@@ -96,6 +105,8 @@ public class VehicleDao {
 				
 			}
 			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

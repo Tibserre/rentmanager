@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -23,13 +29,45 @@ public class Main {
 		System.out.println("ID ");
 		int id = sc.nextInt(); */
 	
+		
+		/*File file = new File("C:\\Users\\tibse\\RentManagerDatabase.mv.db");
+		
+		if (file.exists()) {
+            boolean bval = file.setReadable(true,false);
+            System.out.println("set the every user Read permission: "+ bval);
+        } else {
+            System.out.println("File cannot exists: ");
+        }
+		
+		 if (file.exists()) {
+	            boolean bval = file.setWritable(true,false);
+	            System.out.println("set the every user write permission: "+ bval);
+	        } else {
+	            System.out.println("File cannot exists: ");
+	        } 
+		 if (file.exists()) {
+	            boolean bval = file.setExecutable(true,false);
+	            System.out.println("set the every user Exec permission: "+ bval);
+	        } else {
+	            System.out.println("File cannot exists: ");
+	        } 
+	if(file.canRead()&&file.canWrite()&&file.canExecute()) {
+		 System.out.println("Write & read & exec ok");
+	}*/
 			ApplicationContext context = new
 					AnnotationConfigApplicationContext(AppConfiguration.class);
-					ClientService clientService = context.getBean(ClientService.class);
+					//ClientService clientService = context.getBean(ClientService.class);
 					VehicleService vehicleService = context.getBean(VehicleService.class);
 					
-			System.out.println(clientService);
-			System.out.println(vehicleService);
+			try {
+				System.out.println(vehicleService.findAll());
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			
+			
+			//System.out.println(vehicleService);
 			//long id = 2;
 			/*String constructeur = "Peugot";
 			int nb_places = 4;

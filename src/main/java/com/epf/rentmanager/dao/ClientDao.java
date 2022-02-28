@@ -49,6 +49,8 @@ public class ClientDao {
 			pstmt.setDate(4, Date.valueOf(client.getbirthdate()));
 			pstmt.executeUpdate();
 			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -64,7 +66,9 @@ public class ClientDao {
 			PreparedStatement pstmt = conn.prepareStatement(DELETE_CLIENT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setInt(1, client.getId());
 			long key = pstmt.executeUpdate();
-			
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 			return key;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,6 +95,8 @@ public class ClientDao {
 			Client client = new Client (
 					 clientFirstName,clientLastName, clientBirthday, clientEmail,id);
 			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
 			return Optional.of(client);
 			
 		} catch (SQLException e) {
@@ -113,7 +119,9 @@ public class ClientDao {
 			while (rs.next()) {
 				Client client = new Client(rs.getString("prenom"), rs.getString("nom"), rs.getDate("naissance").toLocalDate(), rs.getString("email"), rs.getInt("id"));
 				clients.add(client);
-				
+				conn.close();
+				 if (conn.isClosed()) 
+				        System.out.println("Connection closed.");
 			}
 			
 		} catch (SQLException e) {
