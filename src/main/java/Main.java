@@ -27,6 +27,8 @@ import com.epf.rentmanager.service.VehicleService;
 public class Main {
 	public static void main(String[] args) throws DaoException{
        
+		
+	
 		/*Scanner sc = new Scanner(System.in);
 		System.out.println("ID ");
 		int id = sc.nextInt(); */
@@ -56,7 +58,7 @@ public class Main {
 	if(file.canRead()&&file.canWrite()&&file.canExecute()) {
 		 System.out.println("Write & read & exec ok");
 	}*/
-			ApplicationContext context = new
+		/*	ApplicationContext context = new
 					AnnotationConfigApplicationContext(AppConfiguration.class);
 					ClientService clientService = context.getBean(ClientService.class);
 					VehicleService vehicleService = context.getBean(VehicleService.class);
@@ -97,7 +99,7 @@ public class Main {
 					e.printStackTrace();
 				}
 		
-			
+			*/
 			
 			//System.out.println(vehicleService);
 			//long id = 2;

@@ -103,6 +103,33 @@ public class ReservationDao {
 		return Optional.empty();
 	}
 	public Optional<Reservation> findResaByClientId(long clientId) throws DaoException {
+		
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			
+			pstmt.setLong(1, clientId);
+			ResultSet rs = pstmt.executeQuery();
+			//A TERMINER
+			
+			rs.next();
+			Long reservationClientId = rs.getLong("client_id");
+			Long reservationVehicleId = rs.getLong("vehicle_id");
+			LocalDate reservationDebut = rs.getDate("debut").toLocalDate();
+			LocalDate reservationFin = rs.getDate("fin").toLocalDate();
+			
+			
+			Reservation reservation = new Reservation (
+					 id,reservationDebut, reservationFin, reservationClientId,reservationVehicleId);
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
+			return Optional.of(reservation);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return Optional.empty();
 	}
 	

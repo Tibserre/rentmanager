@@ -24,6 +24,12 @@ public class Reservation {
 		this.client_id = client_id;
 		this.vehicle_id = vehicle_id;
 	}
+	
+	public Reservation(long id) {
+		super();
+		this.id = id;
+	}
+	
 	public long getId() {
 		return id;
 	}
