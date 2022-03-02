@@ -3,12 +3,12 @@ package com.epf.rentmanager.model;
 import java.time.LocalDate;
 
 public class Reservation {
-	private int id; 
+	private long id; 
 	private LocalDate start_resa;
 	private LocalDate end_resa;
-	private int client_id; 
-	private int vehicle_id;
-	public Reservation(int id, LocalDate start_resa, LocalDate end_resa, int client_id, int vehicle_id) {
+	private long client_id; 
+	private long vehicle_id;
+	public Reservation(long id, LocalDate start_resa, LocalDate end_resa, long client_id, long vehicle_id) {
 		super();
 		this.id = id;
 		this.start_resa = start_resa;
@@ -16,7 +16,15 @@ public class Reservation {
 		this.client_id = client_id;
 		this.vehicle_id = vehicle_id;
 	}
-	public int getId() {
+	
+	public Reservation( LocalDate start_resa, LocalDate end_resa, long client_id, long vehicle_id) {
+		super();
+		this.start_resa = start_resa;
+		this.end_resa = end_resa;
+		this.client_id = client_id;
+		this.vehicle_id = vehicle_id;
+	}
+	public long getId() {
 		return id;
 	}
 	public LocalDate getStart_resa() {
@@ -25,10 +33,10 @@ public class Reservation {
 	public LocalDate getEnd_resa() {
 		return end_resa;
 	}
-	public int getClient_id() {
+	public long getClient_id() {
 		return client_id;
 	}
-	public int getVehicle_id() {
+	public long getVehicle_id() {
 		return vehicle_id;
 	}
 	public void setStart_resa(LocalDate start_resa) {
@@ -42,6 +50,12 @@ public class Reservation {
 	}
 	public void setVehicle_id(int vehicle_id) {
 		this.vehicle_id = vehicle_id;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", start_resa=" + start_resa + ", end_resa=" + end_resa + ", client_id="
+				+ client_id + ", vehicle_id=" + vehicle_id + "]";
 	}
 	
 	

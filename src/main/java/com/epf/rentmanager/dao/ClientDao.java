@@ -56,7 +56,7 @@ public class ClientDao {
 		try {
 			Connection conn = ConnectionManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(DELETE_CLIENT_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
-			pstmt.setInt(1, client.getId());
+			pstmt.setLong(1, client.getId());
 			long key = pstmt.executeUpdate();
 			conn.close();
 			 if (conn.isClosed()) 
@@ -69,13 +69,13 @@ public class ClientDao {
 		return 0;
 	}
 
-	public Optional<Client> findById(int id) throws DaoException {
+	public Optional<Client> findById(long id) throws DaoException {
 		
 		try {
 			Connection conn = ConnectionManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(FIND_CLIENT_QUERY);
 			
-			pstmt.setInt(1, id);
+			pstmt.setLong(1, id);
 			ResultSet rs = pstmt.executeQuery();
 			
 			rs.next();
@@ -109,7 +109,7 @@ public class ClientDao {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				Client client = new Client(rs.getString("prenom"), rs.getString("nom"), rs.getDate("naissance").toLocalDate(), rs.getString("email"), rs.getInt("id"));
+				Client client = new Client(rs.getString("prenom"), rs.getString("nom"), rs.getDate("naissance").toLocalDate(), rs.getString("email"), rs.getLong("id"));
 				clients.add(client);
 				
 			}

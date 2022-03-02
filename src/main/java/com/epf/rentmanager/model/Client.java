@@ -7,9 +7,9 @@ public class Client {
 	private String lastname;
 	private LocalDate birthdate;
 	private String mail;
-	private int id;
+	private long id;
 	
-	public Client(String name, String lastname, LocalDate birthdate, String mail,  int id) {
+	public Client(String name, String lastname, LocalDate birthdate, String mail,  long id) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
@@ -31,7 +31,7 @@ public class Client {
 		return name;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -67,7 +67,7 @@ public class Client {
 	}
 
 
-	public int id() {
+	public long id() {
 		return id;
 	}
 	@Override

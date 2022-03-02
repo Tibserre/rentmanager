@@ -16,6 +16,7 @@ import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
+import com.epf.rentmanager.model.Reservation;
 import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
@@ -24,7 +25,7 @@ import com.epf.rentmanager.service.VehicleService;
 
 
 public class Main {
-	public static void main(String[] args){
+	public static void main(String[] args) throws DaoException{
        
 		/*Scanner sc = new Scanner(System.in);
 		System.out.println("ID ");
@@ -60,9 +61,37 @@ public class Main {
 					ClientService clientService = context.getBean(ClientService.class);
 					VehicleService vehicleService = context.getBean(VehicleService.class);
 					ReservationService reservationService = context.getBean(ReservationService.class);
-		
+					
+					
 				try {
+					System.out.println("resas");
 					System.out.println(reservationService.findAll());
+					System.out.println("iencli");
+					System.out.println(clientService.findAll());
+					System.out.println("titines");
+					System.out.println(vehicleService.findAll());
+					
+					Scanner sc = new Scanner(System.in);
+					System.out.println("ID Client");
+					int IdClient = sc.nextInt();
+					System.out.println("ID Vehicle");
+					int IdVehicle = sc.nextInt();
+					System.out.println("Date Début JJ/MM/YYYY");
+					String debut = sc.next();
+					DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+					LocalDate dDebut = LocalDate.parse(debut, formatter);
+					
+					System.out.println("Date Fin JJ/MM/YYYY");
+					String fin = sc.next();
+					LocalDate dFin = LocalDate.parse(fin, formatter);
+					
+					Reservation reservation = new Reservation (dDebut, dFin, IdClient, IdVehicle );
+					
+					System.out.println(reservationService.create(reservation));
+					System.out.println(reservationService.findAll());
+					System.out.println(reservationService.delete(reservation));
+					System.out.println(reservationService.findAll());
+					
 				} catch (ServiceException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

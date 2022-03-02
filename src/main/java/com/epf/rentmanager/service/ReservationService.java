@@ -9,6 +9,7 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 
 @Service
 public class ReservationService {
@@ -21,6 +22,22 @@ public class ReservationService {
 		
 		
 	}
+	
+	public long delete (Reservation reservation) throws DaoException{
+		return this.reservationDao.delete(reservation);
+	}
+	
+	public boolean create(Reservation reservation) throws ServiceException {
+		
+		try {
+			return this.reservationDao.create(reservation);
+			
+		} catch (DaoException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public List<Reservation> findAll() throws ServiceException {
 		// TODO: récupérer tous les clients
 		try {
