@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 
 @Repository
@@ -102,35 +103,33 @@ public class ReservationDao {
 		
 		return Optional.empty();
 	}
-	public Optional<Reservation> findResaByClientId(long clientId) throws DaoException {
+	
+	public List<Reservation> findResaByClientId(long clientId) throws DaoException {
 		
+		List<Reservation> reservations = new ArrayList<Reservation>();
 		try {
-			Connection conn = ConnectionManager.getConnection();
+			
+			Connection conn;
+			conn = ConnectionManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
-			
-			pstmt.setLong(1, clientId);
 			ResultSet rs = pstmt.executeQuery();
-			//A TERMINER
 			
-			rs.next();
-			Long reservationClientId = rs.getLong("client_id");
-			Long reservationVehicleId = rs.getLong("vehicle_id");
-			LocalDate reservationDebut = rs.getDate("debut").toLocalDate();
-			LocalDate reservationFin = rs.getDate("fin").toLocalDate();
-			
-			
-			Reservation reservation = new Reservation (
-					 id,reservationDebut, reservationFin, reservationClientId,reservationVehicleId);
+			while (rs.next()) {
+				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), rs.getLong("client_id"), rs.getLong("vehicle_id") );
+				reservations.add(reservation);
+				
+			}
 			conn.close();
 			 if (conn.isClosed()) 
 			        System.out.println("Connection closed.");
-			return Optional.of(reservation);
-			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			
 		}
 		
-		return Optional.empty();
+		return reservations;
 	}
 	
 	public Optional<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {

@@ -58,7 +58,7 @@ public class Main {
 	if(file.canRead()&&file.canWrite()&&file.canExecute()) {
 		 System.out.println("Write & read & exec ok");
 	}*/
-		/*	ApplicationContext context = new
+			ApplicationContext context = new
 					AnnotationConfigApplicationContext(AppConfiguration.class);
 					ClientService clientService = context.getBean(ClientService.class);
 					VehicleService vehicleService = context.getBean(VehicleService.class);
@@ -72,8 +72,12 @@ public class Main {
 					System.out.println(clientService.findAll());
 					System.out.println("titines");
 					System.out.println(vehicleService.findAll());
-					
 					Scanner sc = new Scanner(System.in);
+					System.out.println("ID Client");
+					int IdClient = sc.nextInt();
+					
+					System.out.println(reservationService.findResaByClientId(IdClient));
+					/*Scanner sc = new Scanner(System.in);
 					System.out.println("ID Client");
 					int IdClient = sc.nextInt();
 					System.out.println("ID Vehicle");
@@ -92,14 +96,14 @@ public class Main {
 					System.out.println(reservationService.create(reservation));
 					System.out.println(reservationService.findAll());
 					System.out.println(reservationService.delete(reservation));
-					System.out.println(reservationService.findAll());
+					System.out.println(reservationService.findAll()); */
 					
 				} catch (ServiceException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		
-			*/
+			
 			
 			//System.out.println(vehicleService);
 			//long id = 2;

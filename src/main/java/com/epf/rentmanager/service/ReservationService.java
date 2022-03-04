@@ -49,4 +49,17 @@ public class ReservationService {
 		return null;
 		
 	}
+	
+	public List<Reservation> findResaByClientId(long clientId) throws ServiceException {
+		// TODO: récupérer tous les clients
+		try {
+			return this.reservationDao.findResaByClientId(clientId);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }
+	
