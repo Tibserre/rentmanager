@@ -14,6 +14,7 @@ D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\jav
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\exception\DaoException.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\dao\ReservationDao.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\model\Client.java
+D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\ui\servlets\ClientDeleteServlet.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\utils\IOUtils.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\ui\servlets\ClientCreateServlet.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\configuration\WebConfiguration.java

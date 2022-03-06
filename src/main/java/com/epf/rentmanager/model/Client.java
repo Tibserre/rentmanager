@@ -19,6 +19,10 @@ public class Client {
 		
 	
 	}
+	  public Client(int id) {
+	        this.id = id;
+	    }
+	
 	public Client(String name, String lastname, LocalDate birthdate, String mail ) {
 		super();
 		this.name = name;

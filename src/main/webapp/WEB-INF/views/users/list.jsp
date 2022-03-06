@@ -36,7 +36,7 @@
                                 
                                 <c:forEach items="${listUsers}" var="user">
                                     <tr>
-                                        <td>${user.id}</td>
+                                    <td>${user.id}</td>
                                    <td>${user.lastname}</td> 
                                    <td>${user.name}</td>  
                                    <td>${user.mail}</td>
@@ -47,7 +47,7 @@
                                     <a class="btn btn-success disabled" href="#">
                                       <i class="fa fa-edit"></i>
                                     </a>
-                                    <a class="btn btn-danger disabled" href="#">
+                                    <a class="btn btn-danger" href="${pageContext.request.contextPath}/users/delete?id=${user.id}">
                                       <i class="fa fa-trash"></i>
                                     </a>
                                   </td>
