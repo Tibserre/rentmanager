@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Vehicle;
-import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.VehicleDao;
 @Service
 public class VehicleService {
@@ -53,6 +51,8 @@ public class VehicleService {
 		}
 		return null;
 	}
+	
+
 	
 public long delete(Vehicle vehicle) throws DaoException {
 		

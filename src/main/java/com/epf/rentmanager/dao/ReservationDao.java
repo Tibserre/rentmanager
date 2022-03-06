@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +13,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 import com.epf.rentmanager.exception.DaoException;
-import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
-import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 
 @Repository
@@ -112,6 +109,7 @@ public class ReservationDao {
 			Connection conn;
 			conn = ConnectionManager.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATIONS_BY_CLIENT_QUERY);
+			pstmt.setLong(1, clientId);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -132,8 +130,33 @@ public class ReservationDao {
 		return reservations;
 	}
 	
-	public Optional<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
-		return Optional.empty();
+	public List<Reservation> findResaByVehicleId(long vehicleId) throws DaoException {
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		
+try {
+			
+			Connection conn;
+			conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATIONS_BY_VEHICLE_QUERY);
+			pstmt.setLong(1, vehicleId);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), rs.getLong("client_id"), rs.getLong("vehicle_id") );
+				reservations.add(reservation);
+				
+			}
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			
+		}
+		
+		return reservations;
 	}
 
 	public List<Reservation> findAll() throws DaoException {

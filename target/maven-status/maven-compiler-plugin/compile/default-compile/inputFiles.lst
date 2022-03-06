@@ -4,6 +4,7 @@ D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\jav
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\ui\servlets\HomeServlet.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\dao\VehicleDao.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\exception\ServiceException.java
+D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\service\ReservationService.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\Main.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\configuration\AppConfiguration.java
 D:\Nouveau dossier\Thibault Serre\EPF_Cours\4A\Java\TP2\rentmanager\src\main\java\com\epf\rentmanager\persistence\ConnectionManager.java
