@@ -19,7 +19,7 @@ public class Client {
 		
 	
 	}
-	  public Client(int id) {
+	  public Client(long id) {
 	        this.id = id;
 	    }
 	

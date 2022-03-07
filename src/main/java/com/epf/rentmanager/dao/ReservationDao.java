@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 import com.epf.rentmanager.persistence.ConnectionManager;
 
 @Repository
@@ -29,7 +30,40 @@ public class ReservationDao {
 	private static final String FIND_RESERVATIONS_BY_VEHICLE_QUERY = "SELECT id, client_id, debut, fin FROM Reservation WHERE vehicle_id=?;";
 	private static final String FIND_RESERVATION_BY_ID_QUERY = "SELECT client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
+	private static final String FIND_RESERVATION_VEHICLE_BY_CLIENT_ID_QUERY = "SELECT DISTINCT Vehicle.id, Vehicle.constructeur, Vehicle.nb_places FROM Reservation INNER JOIN Vehicle ON Reservation.vehicle_id = Vehicle.id WHERE client_id=?;";	
+	
+	
+	public List<Vehicle> findResaVehicleByClientId(long clientId) throws DaoException {
+		List<Vehicle> vehicles = new ArrayList<Vehicle>();
 		
+try {
+			
+			Connection conn;
+			conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(FIND_RESERVATION_VEHICLE_BY_CLIENT_ID_QUERY);
+			pstmt.setLong(1, clientId);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Vehicle vehicle = new Vehicle ( rs.getLong("id"), rs.getString("constructeur"), rs.getInt("nb_places") );
+				vehicles.add(vehicle);
+				
+			}
+			conn.close();
+			 if (conn.isClosed()) 
+			        System.out.println("Connection closed.");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+			
+		}
+		
+		return vehicles;
+	}
+	
+	
+	
 	public boolean create(Reservation reservation) throws DaoException {
 		try {
 			Connection conn = ConnectionManager.getConnection();
@@ -113,7 +147,7 @@ public class ReservationDao {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), rs.getLong("client_id"), rs.getLong("vehicle_id") );
+				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), (long)(clientId), rs.getLong("vehicle_id") );
 				reservations.add(reservation);
 				
 			}

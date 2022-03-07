@@ -76,7 +76,7 @@ public class Main {
 					System.out.println("ID Client");
 					int IdClient = sc.nextInt();
 					
-					System.out.println(reservationService.findResaByClientId(IdClient));
+					System.out.println(reservationService.findResaVehicleByClientId(IdClient));
 					/*Scanner sc = new Scanner(System.in);
 					System.out.println("ID Client");
 					int IdClient = sc.nextInt();

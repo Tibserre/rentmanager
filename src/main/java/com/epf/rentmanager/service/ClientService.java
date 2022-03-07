@@ -1,6 +1,7 @@
 package com.epf.rentmanager.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,15 +34,15 @@ public class ClientService {
 		
 	}
 
-	public Client findById(int id) throws ServiceException {
+	public Optional<Client> findById(long id) throws ServiceException {
 		
 		try {
-			return this.clientDao.findById(id).get();
+			return this.clientDao.findById(id);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	public long delete(Client client) throws DaoException {

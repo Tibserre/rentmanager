@@ -9,6 +9,7 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.model.Vehicle;
 
 
 @Service
@@ -66,6 +67,19 @@ public class ReservationService {
 		// TODO: récupérer tous les clients
 		try {
 			return this.reservationDao.findResaByVehicleId(vehicleId);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	
+	public List<Vehicle> findResaVehicleByClientId(long clientId) throws ServiceException {
+		// TODO: récupérer tous les clients
+		try {
+			return this.reservationDao.findResaVehicleByClientId(clientId);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

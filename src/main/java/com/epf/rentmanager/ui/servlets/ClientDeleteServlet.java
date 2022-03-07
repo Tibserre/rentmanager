@@ -25,7 +25,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 	    public void init() throws ServletException {
 	        super.init();
 	        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-	    
+	        System.out.println("Servlet Client Delete ok");
 	    }
 	    
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

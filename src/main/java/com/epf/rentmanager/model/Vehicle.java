@@ -16,6 +16,12 @@ public class Vehicle {
 			this.constructeur= constructeur; 
 			this.nb_places= nb_places;
 	}
+		
+		public Vehicle(String constructeur) {
+			super();
+			this.constructeur= constructeur; 
+		
+	}
 	
 	public long getId() {
 		return id;

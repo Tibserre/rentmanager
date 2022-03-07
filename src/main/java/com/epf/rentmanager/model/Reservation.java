@@ -8,6 +8,8 @@ public class Reservation {
 	private LocalDate end_resa;
 	private long client_id; 
 	private long vehicle_id;
+	private String NomPrenomClient;
+	private String ConstructeurVehicle;
 	public Reservation(long id, LocalDate start_resa, LocalDate end_resa, long client_id, long vehicle_id) {
 		super();
 		this.id = id;
@@ -15,6 +17,15 @@ public class Reservation {
 		this.end_resa = end_resa;
 		this.client_id = client_id;
 		this.vehicle_id = vehicle_id;
+	}
+	
+	public Reservation( Long id, String NomPrenomClient, String ConstructeurVehicle, LocalDate start_resa, LocalDate end_resa) {
+		super();
+		this.start_resa = start_resa;
+		this.end_resa = end_resa;
+		this.id= id;
+		this.NomPrenomClient = NomPrenomClient;
+		this.ConstructeurVehicle = ConstructeurVehicle;
 	}
 	
 	public Reservation( LocalDate start_resa, LocalDate end_resa, long client_id, long vehicle_id) {
