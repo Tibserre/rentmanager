@@ -43,7 +43,7 @@ public class ClientDetailServlet extends HttpServlet {
 
 	            request.setAttribute("user", clientService.findById(id).get());
 	            request.setAttribute("reservations", reservationService.findResaByClientId(id));
-	           // request.setAttribute("VoitureConstructeur", vehicleService.findById(vehicleId));
+	           request.setAttribute("cars", vehicleService.findAll());
 	           request.setAttribute("vehicules", reservationService.findResaVehicleByClientId(id));
 	        } catch (ServiceException e) {
 	            e.printStackTrace();
