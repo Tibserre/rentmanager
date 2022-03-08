@@ -16,7 +16,9 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Reservation;
+import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
+import com.epf.rentmanager.service.VehicleService;
 
 @WebServlet(name = "ReservationListServlet", urlPatterns = "/rents")
 
@@ -24,6 +26,12 @@ public class ReserrvationListServlet extends HttpServlet {
 
 	@Autowired
     private ReservationService reservationService;
+	
+	@Autowired
+	private VehicleService vehicleService;
+	
+	@Autowired
+    private ClientService clientService;
 	
 	 @Override
 	    public void init() throws ServletException {
@@ -35,8 +43,11 @@ public class ReserrvationListServlet extends HttpServlet {
 	 @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        try {
-	            List<Reservation> resas = reservationService.findAll();
+	            List<Reservation> resas = reservationService.findAll();	            
 	            request.setAttribute("resas", resas);
+	            request.setAttribute("cars", vehicleService.findAll());
+	            request.setAttribute("clients", clientService.findAll()); 
+	            
 	        } catch (ServiceException e) {
 	            e.printStackTrace();
 	        }
