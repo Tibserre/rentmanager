@@ -43,7 +43,7 @@
                                     <td>${vehicle.nb_places}</td>
                                     <!--<td>John Doe</td>-->
                                     <td>
-                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/cars/details?id=${user.id}">
+                                        <a class="btn btn-primary" href="${pageContext.request.contextPath}/cars/details?id=${vehicle.id}">
                                             <i class="fa fa-play"></i>
                                         </a>
                                         <a class="btn btn-success disabled" href="#">

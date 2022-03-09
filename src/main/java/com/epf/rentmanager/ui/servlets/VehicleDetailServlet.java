@@ -12,13 +12,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.service.ClientService;
+import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 
 @WebServlet(name = "VehicleDetailServlet", urlPatterns = "/cars/details")
 public class VehicleDetailServlet extends HttpServlet {
 
 	@Autowired
-    private VehicleService vehicleService;
+    private ReservationService reservationService;
+	
+	@Autowired
+	private VehicleService vehicleService;
+	
+	@Autowired
+    private ClientService clientService;
 	
 	@Override
 	public void init() throws ServletException {
@@ -28,16 +36,19 @@ public class VehicleDetailServlet extends HttpServlet {
 		}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	try {
-    		long id = Long.parseLong(request.getParameter("id"));
-			request.setAttribute("car", vehicleService.findById(id));
-			request.getRequestDispatcher("./WEB-INF/views/vehicles/details.jsp").forward(request, response);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
     	
-    	//request.getRequestDispatcher("./WEB-INF/views/vehicles/list.jsp").forward(request, response);
+		try {
+            request.setAttribute("resas",
+                    reservationService.findResaByVehicleId(Integer.parseInt(request.getParameter("id"))));
+            request.setAttribute("vehicule", Integer.parseInt(request.getParameter("id")));
+            request.setAttribute("users", clientService.findAll());
+            request.setAttribute("cars", vehicleService.findAll());
+        } catch (NumberFormatException | ServiceException e) {
+            e.printStackTrace();
+        }
+
+        request.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/details.jsp").forward(request,
+                response);
     }
 
     @Override
