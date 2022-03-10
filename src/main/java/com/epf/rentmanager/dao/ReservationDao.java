@@ -176,7 +176,7 @@ try {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), rs.getLong("client_id"), rs.getLong("vehicle_id") );
+				Reservation reservation = new Reservation ( rs.getLong("id"), rs.getDate("debut").toLocalDate(), rs.getDate("fin").toLocalDate(), rs.getLong("client_id"), vehicleId );
 				reservations.add(reservation);
 				
 			}

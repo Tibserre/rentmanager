@@ -73,10 +73,10 @@ public class Main {
 					System.out.println("titines");
 					System.out.println(vehicleService.findAll());
 					Scanner sc = new Scanner(System.in);
-					System.out.println("ID Client");
-					int IdClient = sc.nextInt();
+					System.out.println("ID Vehicle");
+					int IdVehicle = sc.nextInt();
 					
-					System.out.println(reservationService.findResaVehicleByClientId(IdClient));
+					System.out.println(reservationService.findResaByVehicleID(IdVehicle));
 					/*Scanner sc = new Scanner(System.in);
 					System.out.println("ID Client");
 					int IdClient = sc.nextInt();

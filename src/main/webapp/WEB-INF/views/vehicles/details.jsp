@@ -46,16 +46,16 @@
                                                             <td>${resa.id}.</td>
                                                             <c:forEach items="${cars}" var="car">
                                                                 <c:if test="${resa.vehicle_id eq car.id}">
-                                                                    <td>${car.constructeur} ${car.modele}</td>
+                                                                    <td>${car.constructeur} </td>
                                                                 </c:if>
                                                             </c:forEach>
                                                             <c:forEach items="${users}" var="user">
                                                                 <c:if test="${resa.client_id eq user.id}">
-                                                                    <td>${user.prenom} ${user.nom}</td>
+                                                                    <td>${user.name} ${user.lastname}</td>
                                                                 </c:if>
                                                             </c:forEach>
-                                                            <td>${resa.debut}</td>
-                                                            <td>${resa.fin}</td>
+                                                            <td>${resa.start_resa}</td>
+                                                            <td>${resa.end_resa}</td>
                                                             <td>
                                                                 <!--<a class="btn btn-primary" href="${pageContext.request.contextPath}/rents/detail?id=${resa.id}">
                                             <i class="fa fa-play"></i>
