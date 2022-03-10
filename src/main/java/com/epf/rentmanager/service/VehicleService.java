@@ -1,6 +1,7 @@
 package com.epf.rentmanager.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -31,14 +32,23 @@ public class VehicleService {
 		}
 	}
 
-	public Vehicle findById(long id) throws ServiceException {
+	public long update(Vehicle vehicle) throws ServiceException {
 		try {
-			return this.vehicleDao.findById(id).get();
+			return this.vehicleDao.update(vehicle);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public Optional<Vehicle> findById(long id) throws ServiceException {
+		try {
+			return this.vehicleDao.findById(id);
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	public List<Vehicle> findAll() throws ServiceException {

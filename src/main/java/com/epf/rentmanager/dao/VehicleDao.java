@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +21,29 @@ public class VehicleDao {
 	private VehicleDao() {
 	}
 	
+	private static final String UPDATE_VEHICLE_QUERY = "UPDATE Vehicle SET constructeur = ?, nb_places = ? WHERE id = ?;";
 	private static final String CREATE_VEHICLE_QUERY = "INSERT INTO Vehicle(constructeur, nb_places) VALUES(?, ?);";
 	private static final String DELETE_VEHICLE_QUERY = "DELETE FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLE_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle WHERE id=?;";
 	private static final String FIND_VEHICLES_QUERY = "SELECT id, constructeur, nb_places FROM Vehicle;";
 	private static final String COUNT_VEHICLES_QUERY = "SELECT COUNT (*) FROM Vehicle;";
+	
+	public long update(Vehicle vehicle) throws DaoException {
+		try {
+			Connection conn = ConnectionManager.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(UPDATE_VEHICLE_QUERY,
+					Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, vehicle.getConstructeur());
+			stmt.setInt(2, vehicle.getNb_places());
+			stmt.setLong(3, vehicle.getId());
+			long key = ((PreparedStatement) stmt).executeUpdate();
+			conn.close();
+			return key;
+		} catch (SQLException e) {
+			throw new DaoException();
+		}
+	}
+	
 	
 	public boolean create(Vehicle vehicle) throws DaoException {
 		try {
