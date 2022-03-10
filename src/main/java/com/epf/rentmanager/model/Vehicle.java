@@ -23,6 +23,11 @@ public class Vehicle {
 		
 	}
 	
+		public Vehicle(Long id) {
+			super();
+			this.id = id;
+		
+	}
 	public long getId() {
 		return id;
 	}
