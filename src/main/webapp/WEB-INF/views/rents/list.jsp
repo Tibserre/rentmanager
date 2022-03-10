@@ -52,10 +52,6 @@
                                                             <td>${resa.start_resa}</td>
                                                             <td>${resa.end_resa}</td>
                                                             <td>
-                                                                
-                                                                <a class="btn btn-success disabled" href="#">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </a>
                                                                 <a class="btn btn-danger" href="${pageContext.request.contextPath}/rents/delete?id=${resa.id}">
                                                                     <i class="fa fa-trash"></i>
                                                                 </a>
