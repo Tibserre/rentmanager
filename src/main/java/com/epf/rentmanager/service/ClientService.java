@@ -21,7 +21,14 @@ public class ClientService {
 		this.clientDao= clientDao;
 	}
 	
-
+	public long update(Client client) throws ServiceException {
+		try {
+			return this.clientDao.update(client);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
 	public boolean create(Client client) throws ServiceException {
 		try {
