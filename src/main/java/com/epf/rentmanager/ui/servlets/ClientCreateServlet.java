@@ -36,8 +36,12 @@ public class ClientCreateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	 request.setAttribute("mails", clientService.verifyMail());
     	 try {
+    		 request.setAttribute("users", clientService.findAll());
 			request.setAttribute("nb_mails", clientService.nb_mails());
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

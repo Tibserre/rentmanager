@@ -42,6 +42,7 @@ public class ClientDetailServlet extends HttpServlet {
 	            long id = Long.parseLong(request.getParameter("id"));
 
 	            request.setAttribute("user", clientService.findById(id).get());
+	           
 	            request.setAttribute("reservations", reservationService.findResaByClientId(id));
 	           request.setAttribute("cars", vehicleService.findAll());
 	           request.setAttribute("vehicules", reservationService.findResaVehicleByClientId(id));
