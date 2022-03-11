@@ -22,5 +22,9 @@
 - Un vhicle a un Constructeur et entre 3 et 9 places (Required et min=3 max=9 dans le HTML) 
 - Une adresse mail ne peut pas être utilisée deux fois (JS en bas de la JSP create client)
 
+## Fonctions en plus 
+- Messages expliquant l'erreur dans Create et Update client (trop jeune, mail déjà utilisé) 
+- Dashbaord cliquable
+- 
 ## Eater Egg
 - Plus simple à trouver en fouillant le code qu'en cherchant par soi même, mais il est bien là 
