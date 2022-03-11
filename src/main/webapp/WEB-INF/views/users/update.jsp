@@ -40,7 +40,8 @@
                                                             class="col-sm-2 control-label">Nom</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="last_name"
-                                                                name="last_name" placeholder="Nom" value="${user.lastname}">
+                                                                name="last_name" placeholder="Nom"
+                                                                value="${user.lastname}" minlength="3" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -49,7 +50,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="first_name"
                                                                 name="first_name" placeholder="Prenom"
-                                                                value="${user.name}">
+                                                                value="${user.name}" minlength="3" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -67,14 +68,14 @@
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control" id="birthdate"
                                                                 name="birthdate" placeholder="Naissance"
-                                                                value="${user.birthdate}">
+                                                                value="${user.birthdate}" required onchange="verifyAge()">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <!-- /.box-body -->
                                                 <div class="box-footer">
                                                     <button type="submit"
-                                                        class="btn btn-info pull-right">Ajouter</button>
+                                                        class="btn btn-info pull-right" id="ButtonModif">Ajouter</button>
                                                 </div>
                                                 <!-- /.box-footer -->
                                             </form>
@@ -90,7 +91,19 @@
                         <%@ include file="/WEB-INF/views/common/footer.jsp" %>
             </div>
             <!-- ./wrapper -->
-
+            <script>
+                function verifyAge() {
+                    var Bdate = document.getElementById('birthdate').value;
+                    var Bday = +new Date(Bdate);
+                    if (((Date.now() - Bday) / (31557600000)) > 18) {
+                        console.log('OUI');
+                        document.getElementById('ButtonModif').disabled = false;
+                    } else {
+                        console.log('NOP');
+                        document.getElementById('ButtonModif').disabled = true;
+                    }
+                } 
+            </script>
             <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
         </body>
 

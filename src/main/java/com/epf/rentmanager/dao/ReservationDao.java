@@ -32,6 +32,30 @@ public class ReservationDao {
 	private static final String FIND_RESERVATION_BY_ID_QUERY = "SELECT client_id, vehicle_id, debut, fin FROM Reservation WHERE id=?;";
 	private static final String FIND_RESERVATIONS_QUERY = "SELECT id, client_id, vehicle_id, debut, fin FROM Reservation;";
 	private static final String FIND_RESERVATION_VEHICLE_BY_CLIENT_ID_QUERY = "SELECT DISTINCT Vehicle.id, Vehicle.constructeur, Vehicle.nb_places FROM Reservation INNER JOIN Vehicle ON Reservation.vehicle_id = Vehicle.id WHERE client_id=?;";	
+	private static final String COUNT_RESERVATION_QUERY = "SELECT COUNT (*) FROM Reservation;";
+	
+	
+	public int countAll() {
+		int count = 0;
+		
+		Connection conn;
+		try {
+			conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(COUNT_RESERVATION_QUERY);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) { // just in case
+			    count = rs.getInt(1); // note that indexes are one-based
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return count;
+	}
+
 	
 	
 	public List<Vehicle> findResaVehicleByClientId(long clientId) throws DaoException {

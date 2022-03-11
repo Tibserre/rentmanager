@@ -54,12 +54,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="seats" class="col-sm-2 control-label">Nombre de
+                                                        <label for="seats" class="col-sm-2 control-label"  required>Nombre de
                                                             places</label>
 
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="seats"
-                                                                name="seats" placeholder="Nombre de places" required>
+                                                                name="seats" placeholder="Nombre de places" min="2" max="9" required>
                                                         </div>
                                                     </div>
                                                     <!--

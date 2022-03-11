@@ -18,6 +18,10 @@ public class ReservationService {
 	private ReservationDao reservationDao; 
 	public static ReservationService instance;
 	
+	public int countAll() {
+		return this.reservationDao.countAll();
+	}
+	
 	private ReservationService(ReservationDao reservationDao) {
 		this.reservationDao=reservationDao;
 		

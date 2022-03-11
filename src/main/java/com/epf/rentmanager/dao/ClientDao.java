@@ -31,6 +31,31 @@ public class ClientDao {
 	private static final String FIND_CLIENT_QUERY = "SELECT nom, prenom, email, naissance FROM Client WHERE id=?;";
 	private static final String FIND_CLIENTS_QUERY = "SELECT id, nom, prenom, email, naissance FROM Client;";
 	private static final String UPDATE_CLIENT_QUERY = "UPDATE Client SET nom = ?, prenom = ?, email = ?, naissance = ? WHERE id = ?;";
+	private static final String COUNT_CLIENTS_QUERY = "SELECT COUNT (*) FROM Client;";
+	
+	//private static final String MAIL_LIST_CLIENT_QUERY = "SELECT mail FROM Clients;";
+	
+	public int countAll() {
+		int count = 0;
+		
+		Connection conn;
+		try {
+			conn = ConnectionManager.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(COUNT_CLIENTS_QUERY);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) { // just in case
+			    count = rs.getInt(1); // note that indexes are one-based
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return count;
+	}
+	
 	
 	public long update(Client client) throws DaoException {
 		try {
@@ -114,6 +139,20 @@ public class ClientDao {
 		}
 		return Optional.empty();
 		
+	}
+	
+	public List<String> listMail() throws SQLException{
+		List<String> mails = new ArrayList<String>();
+		Connection conn;
+		conn = ConnectionManager.getConnection();
+		PreparedStatement pstmt = conn.prepareStatement(FIND_CLIENTS_QUERY);
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next()) {
+			mails.add(rs.getString("email"));
+		}
+		
+		return mails;
 	}
 
 	public List<Client> findAll() throws DaoException {

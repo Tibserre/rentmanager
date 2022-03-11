@@ -1,6 +1,7 @@
 package com.epf.rentmanager.ui.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -33,6 +34,13 @@ public class ClientCreateServlet extends HttpServlet {
 	
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	 request.setAttribute("mails", clientService.verifyMail());
+    	 try {
+			request.setAttribute("nb_mails", clientService.nb_mails());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	 request.getServletContext().getRequestDispatcher("/WEB-INF/views/users/create.jsp").forward(request, response);
     }
 
@@ -43,8 +51,11 @@ public class ClientCreateServlet extends HttpServlet {
              System.out.println(request.getParameter("birthdate"));
              Client client = new Client(request.getParameter("last_name"),request.getParameter("first_name"),LocalDate.parse(request.getParameter("birthdate"),formatter), request.getParameter("email"));
              System.out.println(client);
+             
+             
              try {
                  clientService.create(client);
+                 request.setAttribute("users", clientService.findAll());
              } catch (ServerErrorException | ServiceException e) {
                  e.printStackTrace();
              }
