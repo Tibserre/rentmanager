@@ -20,4 +20,7 @@
 - Resa pas plus de 7 jours de suite (JS en bas de la JSP Create et Update reservation) 
 - Client de -18 ans ne peut être crée (JS en bas de la JSP Create et Update Client)
 - Un vhicle a un Constructeur et entre 3 et 9 places (Required et min=3 max=9 dans le HTML) 
-- 
+- Une adresse mail ne peut pas être utilisée deux fois (JS en bas de la JSP create client)
+
+## Eater Egg
+- Plus simple à trouver en fouillant le code qu'en cherchant par soi même, mais il est bien là 
