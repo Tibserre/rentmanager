@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!DOCTYPE html>
-    <html>
+    <html lang="fr">
     <%@include file="/WEB-INF/views/common/head.jsp" %>
 
         <body class="hold-transition skin-blue sidebar-mini">
@@ -46,7 +46,7 @@
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control" id="first_name"
                                                                 name="first_name" placeholder="Prenom" minlength="3"
-                                                                required>
+                                                                required onchange="nomProfs()">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -66,8 +66,11 @@
                                                                 name="birthdate" placeholder="Naissance" required
                                                                 onchange="verifyAge()">
                                                         </div>
-                                                    </div>
 
+                                                    </div>
+                                                    <div id="Warning">
+
+                                                    </div>
                                                 </div>
                                                 <!-- /.box-body -->
                                                 <div class="box-footer">
@@ -89,40 +92,54 @@
             </div>
             <!-- ./wrapper -->
             <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
-            <script>
+                <script>
 
 
-                function verifyAge() {
-                    var Bdate = document.getElementById('birthdate').value;
-                    var Bday = +new Date(Bdate);
-                    if (((Date.now() - Bday) / (31557600000)) > 18) {
-                        console.log('OUI');
-                        document.getElementById('ButtonAjouter').disabled = false;
-                    } else {
-                        console.log('NOP');
-                        document.getElementById('ButtonAjouter').disabled = true;
+                    function verifyAge() {
+                        var Bdate = document.getElementById('birthdate').value;
+                        var Bday = +new Date(Bdate);
+                        if (((Date.now() - Bday) / (31557600000)) > 18) {
+                            console.log('OUI');
+                            document.getElementById('ButtonAjouter').disabled = false;
+                            document.getElementById('Warning').innerHTML = '';
+                        } else {
+                            console.log('NOP');
+                            document.getElementById('ButtonAjouter').disabled = true;
+                            document.getElementById('Warning').innerHTML = '<div class="alert alert-danger" role="alert" > Tu es trop jeune ! </div>';
+                        }
                     }
-                }
 
-                const clientsMailsList = [
-                    <c:forEach var="user" items="${users}">
-                        '${user.mail}',
-                    </c:forEach>
-                ];
-               
-                $('#email').on('change', () => {
-                    let result = clientsMailsList.find((element) => element == $('#email').val());
-                    console.log(result)
-                    if (result === undefined) {
-                        document.getElementById('ButtonAjouter').disabled = false;
-                    } else { //une adresse mail existe
-                        document.getElementById('ButtonAjouter').disabled = true;
-                        alert('Cette adresse mail existe deja ...');
+                    const clientsMailsList = [
+                        <c:forEach var="user" items="${users}">
+                            '${user.mail}',
+                        </c:forEach>
+                    ];
+
+                    $('#email').on('change', () => {
+                        let result = clientsMailsList.find((element) => element == $('#email').val());
+                        console.log(result)
+                        if (result === undefined) {
+                            document.getElementById('ButtonAjouter').disabled = false;
+                            document.getElementById('Warning').innerHTML = '';
+
+                        } else { //une adresse mail existe
+
+                            document.getElementById('ButtonAjouter').disabled = true;
+                            document.getElementById('Warning').innerHTML = '<div class="alert alert-danger" role="alert" > Ce mail existe deja ! </div>';
+                        }
+                    });
+
+                    function nomProfs() {
+                        var name = document.getElementById('first_name').value;
+                        if (name == 'Ulysse' || name == 'Mathéo' || name == 'Aurélien') {
+                            document.getElementById('Warning').innerHTML = '<div class="alert alert-danger" role="alert" > Mais nan ? Coucou le prof de JAVA ! </div>'
+                        }else {document.getElementById('Warning').innerHTML =''
+                        }
+                            
                     }
-                });
-            </script>
+                </script>
 
-            <%@ include file="/WEB-INF/views/common/js_imports.jsp" %>
+
         </body>
 
     </html>
